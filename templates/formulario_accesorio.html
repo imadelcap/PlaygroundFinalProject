@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+
+<body>
+    <h3> Formulario  -  Crear Accesorio </h3s>
+<form action='/AppTiendaBicicletas/crear_accesorio/' method="post">
+    {% csrf_token %}
+    <table>
+        {{formulario.as_table}}
+    <input type="submit" value="Submit">
+    </table>
+</form>
+</body>
+{% endblock %}
