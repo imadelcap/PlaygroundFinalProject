@@ -22,5 +22,6 @@ from PlaygroundFinalProject.views import inicio
 urlpatterns = [
     path('admin', admin.site.urls),
     path('inicio/', inicio),
-    path('usuarios/', include('appUsuarios.urls'))
+    path('usuarios/', include('appUsuarios.urls')),
+    path('stock/', include('appStock.urls'))
 ]

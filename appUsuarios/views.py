@@ -31,7 +31,7 @@ def registro_usuario(request):
         if formulario.is_valid():
             username = formulario.cleaned_data['username']
             formulario.save()
-            return render(request,"index.html" ,  {"mensaje":"Usuario " + username + " registrado"})
+            return render(request,"index.html" ,  {"mensaje":"Usuario " + username + " registrado correctamente"})
         else:
             return render(request, 'usuarios/registro.html', {"formulario": formulario})
 

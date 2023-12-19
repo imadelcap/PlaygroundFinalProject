@@ -7,6 +7,21 @@ Esta web tendrá
  - páginas,
  - formularios.
 
+Detalles hechos:
+ - Incluir app en settings.py INSTALLED_APPS 
 
-Notas
+Recordar/arreglar
  - El template base tiene en la barra de navegación los links a las páginas segun Entrega3
+ - Ver mensaje en index.html dependiendo si recibe un msj de la vista. Hecho para usuarios.
+ - En base.html incluir links de usuario en la parte de abajo. Buscar "Menú Usuarios"
+ - También ver arreglo que hizo para no ver algo "Blanco".
+
+
+
+
+usuarios
+Imanol	calvolan@gmail.com imadelcap1234
+
+superuser:
+imanolcalvo
+44kiwi57

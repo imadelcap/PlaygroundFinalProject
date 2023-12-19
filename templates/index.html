@@ -3,8 +3,12 @@
 
 {% block contenido %}
 
+{% if mensaje %}
+<h2> {{ mensaje }}</h2>
+
+{% else %}
 <h1> Te damos la bienvenida! </h1>
 <h3> Esta es la pagina de inicio del proyecto</h3s>
-
+{% endif %}
 
 {% endblock %}
