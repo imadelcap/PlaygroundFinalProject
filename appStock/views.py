@@ -52,9 +52,31 @@ def eliminar_bicicleta(request, marca_bicicleta, tipo_bicicleta, rodado_biciclet
     return redirect('listar modelos de bicicletas')
 
 def eliminar_accesorio(request, marca_accesorio, tipo_accesorio):
-    accesorio = Accesorio.objects.filter( marca = marca_accesorio, tipo = tipo_accesorio)
+    accesorio = Accesorio.objects.get( marca = marca_accesorio, tipo = tipo_accesorio)
     accesorio.delete()
     return redirect('listar accesorios')
+
+def editar_accesorio(request, marca_accesorio, tipo_accesorio):
+    accesorio = Accesorio.objects.filter( marca = marca_accesorio, tipo = tipo_accesorio)
+
+    formulario = AccesorioFormulario(request.POST)
+    
+    print('@@@@@@@@@@') #Debug
+    print(marca_accesorio, tipo_accesorio) #Debug
+
+    if formulario.is_valid():
+        datos = formulario.cleaned_data
+        accesorio.tipo = datos["tipo"]
+        accesorio.marca = datos["marca"]
+        accesorio.descripcion = datos["descripcion"]
+        accesorio.stock = datos ['stock']
+        accesorio.save()
+        return render(request, 'index.html', {"mensaje":"Accesorio " + accesorio.tipo + " modificado correctamente"})
+    else:
+        accesorio = Accesorio.objects.get( marca = marca_accesorio, tipo = tipo_accesorio)
+        datos_iniciales = {'tipo': accesorio.tipo, 'marca': accesorio.marca, 'descripcion': accesorio.descripcion, 'stock': accesorio.stock}      
+        formulario = AccesorioFormulario(initial=datos_iniciales)
+        return render(request, 'stock/editar_accesorio.html', {'formulario': formulario })
 
 def buscar_accesorio(request):
 

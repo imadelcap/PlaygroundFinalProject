@@ -12,6 +12,9 @@
     <button>
         <a href="{% url 'eliminar_accesorio' marca_accesorio=accesorio.marca tipo_accesorio=accesorio.tipo %}"> Eliminar </a>
     </button>
+    <button>
+        <a href="{% url 'editar_accesorio' marca_accesorio=accesorio.marca tipo_accesorio=accesorio.tipo %}"> Editar </a>
+    </button>
     {% endfor %}
 <br>
 </body>
