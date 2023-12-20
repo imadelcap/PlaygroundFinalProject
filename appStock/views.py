@@ -1,6 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-from django.shortcuts import render
 from appStock.models import ModeloBicicleta, Accesorio
 from appStock.forms import AccesorioFormulario, ModeloBicicletaFormulario
 
@@ -39,9 +38,31 @@ def formulario_accesorio(request):
     formulario = AccesorioFormulario()
     return render(request, 'stock/formulario_accesorio.html', {'formulario': formulario })
 
+def listar_accesorios(request):
+    lista_acc = Accesorio.objects.all()
+    return render(request, 'stock/lista_accesorios.html', {'accesorios': lista_acc})
+
+def listar_bicicletas(request):
+    lista_bicis = ModeloBicicleta.objects.all()
+    return render(request, 'stock/lista_bicicletas.html', {'bicicletas': lista_bicis})
+
+def eliminar_bicicleta(request, marca_bicicleta, tipo_bicicleta, rodado_bicicleta):
+    bicicleta = ModeloBicicleta.objects.get(marca = marca_bicicleta, tipo = tipo_bicicleta, rodado = rodado_bicicleta)
+    bicicleta.delete()
+    return redirect('listar modelos de bicicletas')
+
+def eliminar_accesorio(request, marca_accesorio, tipo_accesorio):
+    accesorio = Accesorio.objects.filter( marca = marca_accesorio, tipo = tipo_accesorio)
+    accesorio.delete()
+    return redirect('listar accesorios')
+
 def buscar_accesorio(request):
-    return render(request, 'stock/formulario_buscar_accesorio.html')
+
+    formulario = AccesorioFormulario()
+    return render(request, 'stock/buscar_accesorio.html', {'formulario': formulario })
 
 def buscar_modelo_bicicleta(request):
-    return render(request, 'stock/formulario_buscar_modelo_bicicleta.html')
+
+    formulario = ModeloBicicletaFormulario()
+    return render(request, 'stock/buscar_modelo_bicicleta.html', {'formulario': formulario })
 

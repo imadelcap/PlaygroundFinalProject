@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+
+<body>
+    <h3> Listado de Accesorios </h3>
+    
+    {% for accesorio in accesorios %}
+    
+    <li>{{accesorio.tipo}} {{accesorio.marca}} - Stock = {{accesorio.stock}}</li>
+    <button>
+        <a href="{% url 'eliminar_accesorio' marca_accesorio=accesorio.marca tipo_accesorio=accesorio.tipo %}"> Eliminar </a>
+    </button>
+    {% endfor %}
+<br>
+</body>
+{% endblock %}

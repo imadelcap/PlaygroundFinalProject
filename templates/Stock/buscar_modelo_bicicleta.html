@@ -3,16 +3,17 @@
 
 {% block contenido %}
 
-<body>
-    <h3> Formulario  -  Crear Accesorio </h3s>
-        <br>
-<form action='/stock/crear_accesorio/' method="post">
+
+<br>
+<h3> Formulario  -  Buscar Modelo de bicicleta </h3s>
+    <br>
+<form action="/stock/buscar_modelo_de_bicicleta/" method="get">
     {% csrf_token %}
     <table>
         {{formulario.as_table}}
     </table>
     <br>
-    <input type="submit" value="Crear">
+    <input type="submit" value="Buscar">
 </form>
-</body>
+
 {% endblock %}

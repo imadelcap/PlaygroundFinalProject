@@ -6,15 +6,16 @@
 
 <br>
 <h3> Formulario  -  Crear Modelo de bicicleta </h3s>
-    
+<br>
 <form action="/stock/crear_modelo_de_bicicleta/" method="post">
     {% csrf_token %}
     <p>Marca: <input type = "text" name="marca">
     <p>Tipo: <input type = "text" name="tipo">
     <p>Rodado: <input type = "number" name="rodado">
     <p>Stock: <input type = "number" name="stock">
-    <input type="submit" value="Submit">
     </table>
+    <br>
+    <input type="submit" value="Crear">
 </form>
 
 {% endblock %}

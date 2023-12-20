@@ -18,4 +18,4 @@ class Accesorio(models.Model):
     stock = models.IntegerField()
 
     def __str__(self):
-        return 'Accesorio: ' + self.tipo + ' - ' + self.marca + ' - ' + self.descripcion + ' - sotck ' + self.stock
+        return 'Accesorio: ' + self.tipo + ' - ' + self.marca + ' - ' + self.descripcion + ' - stock ' + self.stock

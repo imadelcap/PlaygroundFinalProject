@@ -4,15 +4,15 @@
 {% block contenido %}
 
 <body>
-    <h3> Formulario  -  Crear Accesorio </h3s>
-        <br>
-<form action='/stock/crear_accesorio/' method="post">
+    <h3> Formulario  -  Buscar Accesorio </h3s>
+<br>
+<form action='/stock/buscar_accesorio/' method="GET">
     {% csrf_token %}
     <table>
         {{formulario.as_table}}
     </table>
     <br>
-    <input type="submit" value="Crear">
+    <input type="submit" value="Buscar">
 </form>
 </body>
 {% endblock %}
