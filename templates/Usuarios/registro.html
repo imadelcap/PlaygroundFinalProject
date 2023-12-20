@@ -7,7 +7,7 @@
 
 <form action="" method="POST">
     {% csrf_token %}
-        {{ formulario.as_p }}
+        {{ formulario.as_table}}
     <button type="submit">Crear Usuario</button>
 </form>
 
