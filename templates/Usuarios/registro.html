@@ -3,11 +3,9 @@
 
 {% block contenido %}
 
-<br>
-
 <form action="" method="POST">
     {% csrf_token %}
-        {{ formulario.as_table}}
+        {{ formulario.as_p}}
     <button type="submit">Crear Usuario</button>
 </form>
 

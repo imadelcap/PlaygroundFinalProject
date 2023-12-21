@@ -19,9 +19,13 @@ from django.urls import path, include
 
 from PlaygroundFinalProject.views import inicio
 
+# Para las imagenes
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin', admin.site.urls),
     path('inicio/', inicio),
     path('usuarios/', include('appUsuarios.urls')),
     path('stock/', include('appStock.urls'))
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

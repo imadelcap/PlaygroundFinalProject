@@ -1,0 +1,52 @@
+Consigna:
+En forma individual, crea una aplicación web estilo blog programada en Python en Django. 
+Esta web tendrá 
+ - admin, 
+ - perfiles, 
+ - registro,  
+ - páginas,
+ - formularios.
+
+Para la entrega>
+ - Readme
+ - Video
+ - En Home una presentacion sobre mi.
+ - Administrador is_staff
+ - Usuario que solo puede ver
+
+Opcional
+ - Casos de pruebas
+En mi aplicacion tengo que buscar objetos con mas de un atributo, por lo que implemento doble pasaje de parametros en los listados, edicion y eliminacion.
+Registrar los projectos en el admin --> No me queda claro que pasa cuando no se registran...
+
+
+
+Detalles hechos:
+ - Incluir app en settings.py INSTALLED_APPS 
+
+Recordar/arreglar
+ - El template base tiene en la barra de navegación los links a las páginas segun Entrega3
+ - Ver mensaje en index.html dependiendo si recibe un msj de la vista. Hecho para usuarios.
+ - En base.html incluir links de usuario en la parte de abajo. Buscar "Menú Usuarios"
+ - También ver arreglo que hizo para no ver algo "Blanco".
+ - Ventas linqueados con Clientes?
+ - Reversslazy de las clases de cliente, quiero ir a ver el perfil? Al listado?
+ - Llevar datos al editar perfil
+ - en los html probar sacar el <body>
+ - Ver en editar perfil si pasa bien el perfil, xq el pk esta antes en la href
+
+ #No anda crear perfil de usuario!
+ 
+
+usuarios
+Imanol	calvolan@gmail.com imadelcap1234
+
+superuser:
+imanolcalvo
+44kiwi57
+
+1:23
+https://docs.google.com/document/d/1gyFo7BxuNGHY1CaJAFIjhQkOpECPmA-SxMlqwBycrBw/edit#heading=h.wm0bnw8fbmdg
+http://localhost:8000/stock/listar_modelos_de_bicicletas/
+https://plataforma-beta.coderhouse.com/chat/
+https://docs.google.com/presentation/d/1mIlhtQ3YRzCQxTYmmzFlD6feYvvlZIEaShUlc1yylbk/edit#slide=id.g1522af722c0_0_114

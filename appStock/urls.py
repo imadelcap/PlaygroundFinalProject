@@ -1,6 +1,7 @@
 from django.urls import path
 
 from appStock.views import formulario_accesorio, formulario_modelo_bicicleta, buscar_accesorio, buscar_modelo_bicicleta, listar_accesorios, listar_bicicletas, eliminar_accesorio, eliminar_bicicleta, editar_accesorio, editar_bicicleta
+
 urlpatterns = [
     path('crear_accesorio/', formulario_accesorio, name='crear accesorio'),
     path('crear_modelo_de_bicicleta/', formulario_modelo_bicicleta, name='crear modelo de bicicleta'),

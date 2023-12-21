@@ -1,9 +1,17 @@
 from django.shortcuts import render
 
-from django.contrib.auth.forms import AuthenticationForm, UserChangeForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from appUsuarios.forms import CustomUserCreationForm
 from django.contrib.auth.views import LogoutView
+
+from django.views.generic import CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+
+from appUsuarios.models import PerfilUsuario
 
 def login_usuario(request):
     
@@ -41,3 +49,25 @@ def registro_usuario(request):
 
 class Logout(LogoutView):
     template_name = "usuarios/logout.html"
+
+class PerfilUsuarioCreateView(LoginRequiredMixin, CreateView):
+    model = PerfilUsuario
+    template_name = 'usuarios/crear_perfil.html'
+    success_url = reverse_lazy('lista_perfil')
+    fields = ['usuario', 'imagen', 'rol']
+    login_url = 'usuarios/login'
+
+class PerfilUsuarioUpdateView(LoginRequiredMixin, UpdateView):
+    model = PerfilUsuario
+    template_name = 'usuarios/editar_perfil.html'
+    success_url = reverse_lazy('ver perfil')
+    fields = ['imagen', 'rol']
+    login_url = 'usuarios/login'
+
+@login_required(login_url = 'login')
+def perfil_usuario(request):
+    try:
+        request.user.perfil
+        return render(request, 'usuarios/perfil.html')
+    except:
+        return redirect('crear perfil')
