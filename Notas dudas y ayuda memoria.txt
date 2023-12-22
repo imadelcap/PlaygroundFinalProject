@@ -19,6 +19,14 @@ Opcional
 En mi aplicacion tengo que buscar objetos con mas de un atributo, por lo que implemento doble pasaje de parametros en los listados, edicion y eliminacion.
 Registrar los projectos en el admin --> No me queda claro que pasa cuando no se registran...
 
+No implemente un link a la pagina de inicio en mi como item en mi menu xq lo coloque en Tienda bicicleta en la navbar. Si lo hice en el footer.
+No me renderizaba las vistas basadas en clases xq en el html reutilice codigo que decia utilizaba un "formulario" en lugar de "form"
+No quede contento con como quedo las fuentes, titulos, sobre todo como el estilo de texto del template se extiende hacia mi footer. Quise hacer algun arreglo con esto y con templates particulares, pero no me dio el tiempo de hacerlo y preferi priorizar funcionalidad y entregar (ver About). Lo voy haciendo post entrega y queda hecho en caso de tener que reentregar.
+En el navbar y el menu propio no permito que una persona que una persona que no sea administrador cree nuevos items. Tambien lo hago desde la vista.
+Tambien bloquee las funciones de eliminar y editar, pero en este caso utilice un decorador de staff, y las despliego en el listado dependiendo si el usuario es staff.
+
+
+En mi pagina queda abierto para que cualquier persona pueda ver y buscar items.
 
 
 Detalles hechos:
@@ -34,6 +42,7 @@ Recordar/arreglar
  - Llevar datos al editar perfil
  - en los html probar sacar el <body>
  - Ver en editar perfil si pasa bien el perfil, xq el pk esta antes en la href
+ - Las letras del footer me quedan con el color y tamano de la ultima letra
 
  #No anda crear perfil de usuario!
  

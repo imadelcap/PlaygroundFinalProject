@@ -12,4 +12,4 @@ class PerfilUsuario(models.Model):
     rol = models.CharField(max_length=10, choices=CHOICE, null=True, blank=True)
     
     def __str__(self):
-        return "Usuario: " + self.usuario.username + ", Rol del usuario: " + str(self.rol)
+        return "Usuario: " + self.usuario.username + "."+ "\n" + "Rol del usuario: " + self.rol +'.' #No me imprime el salto de linea

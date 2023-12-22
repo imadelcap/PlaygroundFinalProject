@@ -3,17 +3,14 @@
 
 {% block contenido %}
 
-<body>
-    <h3> Editar Perfil </h3s>
-<br>
-<form action='' method="post" enctype="multipart/form-data">
+
+<h3> Editar Perfil </h3>
+    <form action='' method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <table>
-        {{formulario.as_table}}
+        {{ form.as_p }}
     </table>
-    <br>
-    <input type="submit" value="Editar">
+        <input type="submit" value="Guardar">
 </form>
-</body>
-
+s
 {% endblock %}

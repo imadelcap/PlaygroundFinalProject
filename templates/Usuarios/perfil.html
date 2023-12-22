@@ -2,16 +2,16 @@
 {% load static %}
 
 {% block contenido %}
-
+<h3> Perfil de Usuario </h3>
+<br>
 <body>
-    <h3> Perfil de Usuario </h3s>
-<br>
 {{ request.user.perfil }}
-
-. Imagen de Perfil: <img src = '{{request.user.perfil.imagen.url}}' alt="" height="100px">
 <br>
-
-<a href="{%url 'editar perfil' request.user.perfil.pk %}">Editar perfil</a> 
+Imagen de Perfil: <img src = '{{request.user.perfil.imagen.url}}' alt="" height="100px">
+<br>
+<button>
+    <a href="{%url 'editar perfil' request.user.perfil.pk %}">Editar perfil</a>
+</button>
 </body>
 
 {% endblock %}

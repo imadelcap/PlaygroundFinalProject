@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from PlaygroundFinalProject.views import inicio
+from PlaygroundFinalProject.views import inicio, about
 
 # Para las imagenes
 from django.conf import settings
@@ -25,7 +25,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin', admin.site.urls),
-    path('inicio/', inicio),
+    path('inicio/', inicio, name = 'inicio'),
     path('usuarios/', include('appUsuarios.urls')),
-    path('stock/', include('appStock.urls'))
+    path('stock/', include('appStock.urls')),
+    path('about/', about, name = 'about')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

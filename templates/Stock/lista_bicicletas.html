@@ -2,22 +2,19 @@
 {% load static %}
 
 {% block contenido %}
-
-<body>
-    <h3> Listado de Bicicletas </h3>
-    
-    {% for bicicleta in bicicletas %}
-    
-    <li>Bicicleta {{bicicleta.marca}} {{bicicleta.tipo}} rodado {{bicicleta.rodado}} - Stock = {{bicicleta.stock}}</li>
-    <button>
-        <a href = "{% url 'eliminar_bicicleta' marca_bicicleta=bicicleta.marca tipo_bicicleta=bicicleta.tipo rodado_bicicleta=bicicleta.rodado %}"> Eliminar </a>
-    </button>
-    <button>
-        <a href = "{% url 'editar_bicicleta' marca_bicicleta=bicicleta.marca tipo_bicicleta=bicicleta.tipo rodado_bicicleta=bicicleta.rodado %}"> Editar </a>
-    </button>
-    <br>
-    
+<h3> Listado de Bicicletas </h3>
+    <body>    
+        {% for bicicleta in bicicletas %}
+        <li>Bicicleta {{bicicleta.marca}} {{bicicleta.tipo}} rodado {{bicicleta.rodado}} - Stock = {{bicicleta.stock}}</li>
+        {% if request.user.is_staf %}
+        <button>
+            <a href = "{% url 'eliminar_bicicleta' marca_bicicleta=bicicleta.marca tipo_bicicleta=bicicleta.tipo rodado_bicicleta=bicicleta.rodado %}"> Eliminar </a>
+        </button>
+        <button>
+            <a href = "{% url 'editar_bicicleta' marca_bicicleta=bicicleta.marca tipo_bicicleta=bicicleta.tipo rodado_bicicleta=bicicleta.rodado %}"> Editar </a>
+        </button>
+        {% endif %}
+        <br>
     {% endfor %}
-
-</body>
+    </body>
 {% endblock %}
