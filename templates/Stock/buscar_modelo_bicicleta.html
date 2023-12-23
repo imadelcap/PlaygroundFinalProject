@@ -2,17 +2,15 @@
 {% load static %}
 
 {% block contenido %}
-
-
-<br>
-<h3> Formulario  -  Buscar Modelo de bicicleta </h3s>
-    <br>
+<h3> Formulario  -  Buscar Modelo de bicicleta </h3>
 <form action="/stock/buscar_modelo_de_bicicleta/" method="get">
-    {% csrf_token %}
-    <table>
-        {{formulario.as_table}}
-    </table>
-    <br>
+    <label for = 'crit'>Criterio</label>
+    <select name="criterio" id="crit">
+        <option value="marca">Marca</option>
+        <option value="tipo">Tipo</option>
+        <option value="rodado">Rodado</option>
+    </select>
+    <p>Caracter&iacute;stica:<input type = "text" name="caracteristica"></p>
     <input type="submit" value="Buscar">
 </form>
 

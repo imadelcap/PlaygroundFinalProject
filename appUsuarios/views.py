@@ -24,7 +24,7 @@ def login_usuario(request):
             user = authenticate(username=usuario, password=contrasenia)
             
             login(request, user)
-            return render(request, "index.html", {"mensaje": f'Bienvenido {user.username}'})
+            return render(request, "index.html", {"mensaje": f'Bienvenid@ {user.username}'})
         else:
             return render(request, 'usuarios/login.html', {"formulario": formulario})
     
@@ -53,7 +53,7 @@ class Logout(LogoutView):
 class PerfilUsuarioCreateView(LoginRequiredMixin, CreateView):
     model = PerfilUsuario
     template_name = 'usuarios/crear_perfil.html'
-    success_url = reverse_lazy('lista_perfil')
+    success_url = reverse_lazy('ver perfil')
     fields = ['usuario', 'imagen', 'rol']
     login_url = 'usuarios/login'
 

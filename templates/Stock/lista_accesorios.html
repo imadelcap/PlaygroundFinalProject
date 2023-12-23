@@ -2,12 +2,9 @@
 {% load static %}
 
 {% block contenido %}
-
 <body>
-    <h3> Listado de Accesorios </h3>
-    
-    {% for accesorio in accesorios %}
-    
+<h3> Listado de Accesorios </h3> 
+{% for accesorio in accesorios %}
     <li>{{accesorio.tipo}} {{accesorio.marca}} - Stock = {{accesorio.stock}}</li>
     {% if request.user.is_staf %}
     <button>
@@ -18,6 +15,6 @@
     </button>
     {% endif %}
     {% endfor %}
-<br>
+    <br>
 </body>
 {% endblock %}
