@@ -30,7 +30,7 @@ Tambien bloquee las funciones de eliminar y editar, pero en este caso utilice un
 
 
 En mi pagina queda abierto para que cualquier persona pueda ver y buscar items.
-
+Quedo funcionando el fondo para el primer caso, luego la funcion URL me concatena las URLs de los templates y ya se me rompe todo. Busque como solucionarlo pero no pude, creo que es sintaxis del html
 
 Detalles hechos:
  - Incluir app en settings.py INSTALLED_APPS 

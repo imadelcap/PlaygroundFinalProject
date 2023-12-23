@@ -24,6 +24,8 @@ def login_usuario(request):
             user = authenticate(username=usuario, password=contrasenia)
             
             login(request, user)
+            if user.is_staff:
+                print('@@@@@@@@@@@@ Staff')
             return render(request, "index.html", {"mensaje": f'Bienvenid@ {user.username}'})
         else:
             return render(request, 'usuarios/login.html', {"formulario": formulario})

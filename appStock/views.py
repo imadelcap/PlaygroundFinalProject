@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from appStock.models import ModeloBicicleta, Accesorio
-from appStock.forms import AccesorioFormulario, ModeloBicicletaFormulario, BusquedaAccesorioFormulario, BusquedaModeloBicicletaFormulario
+from appStock.forms import AccesorioFormulario, ModeloBicicletaFormulario
 
 from django.contrib.auth.decorators import login_required 
 from django.contrib.admin.views.decorators import staff_member_required
@@ -55,19 +55,19 @@ def listar_bicicletas(request):
     lista_bicis = ModeloBicicleta.objects.all()
     return render(request, 'stock/lista_bicicletas.html', {'bicicletas': lista_bicis})
 
-@staff_member_required    #No permito hacer modificaciones de inventario a personas que no tienen dicho privilegio
+#@staff_member_required    #No permito hacer modificaciones de inventario a personas que no tienen dicho privilegio
 def eliminar_bicicleta(request, marca_bicicleta, tipo_bicicleta, rodado_bicicleta):
     bicicleta = ModeloBicicleta.objects.get(marca = marca_bicicleta, tipo = tipo_bicicleta, rodado = rodado_bicicleta)
     bicicleta.delete()
     return redirect('listar modelos de bicicletas')
 
-@staff_member_required ()    #No permito hacer modificaciones de inventario a personas que no tienen dicho privilegio
+#@staff_member_required ()    #No permito hacer modificaciones de inventario a personas que no tienen dicho privilegio
 def eliminar_accesorio(request, marca_accesorio, tipo_accesorio):
     accesorio = Accesorio.objects.get( marca = marca_accesorio, tipo = tipo_accesorio)
     accesorio.delete()
     return redirect('listar accesorios')
 
-@staff_member_required
+#@staff_member_required
 def editar_bicicleta(request, marca_bicicleta, tipo_bicicleta, rodado_bicicleta):
     bicicleta = ModeloBicicleta.objects.get(marca = marca_bicicleta, tipo = tipo_bicicleta, rodado = rodado_bicicleta)
     formulario = ModeloBicicletaFormulario(request.POST)
@@ -87,7 +87,7 @@ def editar_bicicleta(request, marca_bicicleta, tipo_bicicleta, rodado_bicicleta)
         formulario = ModeloBicicletaFormulario(initial=datos_iniciales)
     return render(request, 'stock/editar_bicicleta.html', {'formulario':formulario})
 
-@staff_member_required
+#@staff_member_required
 def editar_accesorio(request, marca_accesorio, tipo_accesorio):
     accesorio = Accesorio.objects.get( marca = marca_accesorio, tipo = tipo_accesorio)
     formulario = AccesorioFormulario(request.POST)
@@ -111,11 +111,15 @@ def buscar_accesorio(request):
     if request.GET.get('caracteristica',False):
         b_criterio = request.GET['criterio']
         b_caracteristica = request.GET['caracteristica']
+        #print('##############'+b_criterio+b_caracteristica)
         if b_criterio == 'tipo':
             accesorios = Accesorio.objects.filter(tipo__contains = b_caracteristica)
             return render(request, 'stock/lista_accesorios.html', {'accesorios': accesorios})
         elif b_criterio == 'marca':
             accesorios = Accesorio.objects.filter(marca__contains = b_caracteristica)
+            return render(request, 'stock/lista_accesorios.html', {'accesorios': accesorios})
+        elif b_criterio == 'descripcion':
+            accesorios = Accesorio.objects.filter(descripcion__contains = b_caracteristica)
             return render(request, 'stock/lista_accesorios.html', {'accesorios': accesorios})
     else:
         return render(request, 'stock/buscar_accesorio.html')
@@ -124,13 +128,11 @@ def buscar_modelo_bicicleta(request):
     if request.GET.get('caracteristica',False):
         b_criterio = request.GET['criterio']
         b_caracteristica = request.GET['caracteristica']
-        if b_criterio == 'tipo':
-            print('@@@@'+ b_criterio)
-            print('@@@@'+ b_caracteristica)    
-            bicicletas = ModeloBicicleta.objects.filter(tipo__contains = b_caracteristica)
-            return render(request, 'stock/lista_bicicletas.html', {'accesorios': bicicletas})
-        elif b_criterio == 'marca':
+        if b_criterio == 'marca':
             bicicletas = ModeloBicicleta.objects.filter(marca__contains = b_caracteristica)
+            return render(request, 'stock/lista_bicicletas.html', {'bicicletas': bicicletas})
+        elif b_criterio == 'tipo':
+            bicicletas = ModeloBicicleta.objects.filter(tipo__contains = b_caracteristica)
             return render(request, 'stock/lista_bicicletas.html', {'bicicletas': bicicletas})
         elif b_criterio == 'rodado':
             bicicletas = ModeloBicicleta.objects.filter(rodado = int(b_caracteristica))

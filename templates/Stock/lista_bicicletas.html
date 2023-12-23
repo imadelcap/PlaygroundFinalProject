@@ -5,7 +5,7 @@
 <h3> Listado de Bicicletas </h3>
     <body>    
         {% for bicicleta in bicicletas %}
-        <li>Bicicleta {{bicicleta.marca}} {{bicicleta.tipo}} rodado {{bicicleta.rodado}} - Stock = {{bicicleta.stock}}</li>
+        <li>Bicicleta {{bicicleta.marca}} - Tipo: {{bicicleta.tipo}} - Rodado: {{bicicleta.rodado}} - Stock: {{bicicleta.stock}}</li>
         {% if request.user.is_staf %}
         <button>
             <a href = "{% url 'eliminar_bicicleta' marca_bicicleta=bicicleta.marca tipo_bicicleta=bicicleta.tipo rodado_bicicleta=bicicleta.rodado %}"> Eliminar </a>

@@ -5,16 +5,17 @@
 <body>
 <h3> Listado de Accesorios </h3> 
 {% for accesorio in accesorios %}
-    <li>{{accesorio.tipo}} {{accesorio.marca}} - Stock = {{accesorio.stock}}</li>
+    <li>{{accesorio.tipo}} - {{accesorio.marca}} - Stock : {{accesorio.stock}} - Descripción: {{accesorio.descripcion}}</li>
     {% if request.user.is_staf %}
-    <button>
-        <a href="{% url 'eliminar_accesorio' marca_accesorio=accesorio.marca tipo_accesorio=accesorio.tipo %}"> Eliminar </a>
-    </button>
-    <button>
-        <a href="{% url 'editar_accesorio' marca_accesorio=accesorio.marca tipo_accesorio=accesorio.tipo %}"> Editar </a>
-    </button>
+        <button>
+            <a href="{% url 'eliminar_accesorio' marca_accesorio=accesorio.marca tipo_accesorio=accesorio.tipo %}"> Eliminar </a>
+        </button>
+        <button>
+            <a href="{% url 'editar_accesorio' marca_accesorio=accesorio.marca tipo_accesorio=accesorio.tipo %}"> Editar </a>
+        </button>
     {% endif %}
-    {% endfor %}
+{% endfor %}
+<li>{{ request.user.is_staff }}</li>
     <br>
 </body>
 {% endblock %}
