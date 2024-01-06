@@ -52,6 +52,7 @@ Recordar/arreglar
 
 usuarios
 Imanol	calvolan@gmail.com imadelcap1234
+Amalia ama12345
 
 superuser:
 imanolcalvo

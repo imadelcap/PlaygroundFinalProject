@@ -44,7 +44,7 @@
             </div>
         </nav>
         <!-- Page Header-->
-        <header class="masthead" style="background-image: url( ../static/assets/img/fondo.jpg)">
+        <header class="masthead" style="background-image: url( /static/assets/img/fondo.jpg)">
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
@@ -73,8 +73,11 @@
                                 <li class="list-inline-item"><a href="/usuarios/login">Iniciar sesi&oacute;n</a></li>
                                 <li class="list-inline-item"><a href="/usuarios/registro">Registrarse</a></li>
                             {% else %}
-                                <li class="list-inline-item"><a href="/usuarios/crear_perfil">Crear perfil de usuario</a></li>
-                                <li class="list-inline-item"><a href="/usuarios/perfil">Ver perfil de usuario</a></li>
+                                {% if not request.user.perfil %}
+                                    <li class="list-inline-item"><a href="/usuarios/crear_perfil">Crear perfil de usuario</a></li>
+                                {% else %}
+                                    <li class="list-inline-item"><a href="/usuarios/perfil">Ver perfil de usuario</a></li>
+                                {% endif %}                           
                                 <li class="list-inline-item"><a href="/usuarios/logout">Cerrar sesi&oacute;n</a></li>
                             {% endif %}
                             <li class="list-inline-item"><a href="/about/">About</a></li>

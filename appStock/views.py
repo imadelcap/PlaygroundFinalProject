@@ -6,6 +6,8 @@ from appStock.forms import AccesorioFormulario, ModeloBicicletaFormulario
 from django.contrib.auth.decorators import login_required 
 from django.contrib.admin.views.decorators import staff_member_required
 
+from datetime import datetime
+
 #@login_required(login_url="login")
 def formulario_modelo_bicicleta(request):
     #No permito hacer altas de inventario a personas que no tienen dicho privilegio
@@ -17,16 +19,16 @@ def formulario_modelo_bicicleta(request):
                 marca = request.POST['marca'], 
                 tipo = request.POST['tipo'], 
                 rodado = request.POST['rodado'],
-                stock = request.POST['stock']
+                stock = request.POST['stock'],
+                creado = datetime.now(),
                 )
             modelo_bicicleta.save()
-
             return render(request, 'index.html',  {"mensaje":"Bicicleta " + modelo_bicicleta.marca + " ingresada correctamente"})    
         
         return render(request, 'stock/formulario_modelo_bicicleta.html')
 
 def formulario_accesorio(request):
-    #No permito hacer altas de inventario a personas que no tienen dicho privilegio
+    
     if not request.user.is_staff:
         return render(request, 'index.html',  {"mensaje":"No tiene permisos para ejecutar esta acción."})    
     else:
@@ -39,7 +41,8 @@ def formulario_accesorio(request):
                     tipo = datos["tipo"], 
                     marca = datos["marca"], 
                     descripcion = datos["descripcion"],
-                    stock = datos ['stock']
+                    stock = datos ["stock"],
+                    creado = datetime.now(),
                     )
                 accesorio.save()
                 return render(request, 'index.html', {"mensaje":"Accesorio " + accesorio.tipo + " ingresado correctamente"})
@@ -55,19 +58,19 @@ def listar_bicicletas(request):
     lista_bicis = ModeloBicicleta.objects.all()
     return render(request, 'stock/lista_bicicletas.html', {'bicicletas': lista_bicis})
 
-#@staff_member_required    #No permito hacer modificaciones de inventario a personas que no tienen dicho privilegio
+@staff_member_required    #No permito hacer modificaciones de inventario a personas que no tienen dicho privilegio
 def eliminar_bicicleta(request, marca_bicicleta, tipo_bicicleta, rodado_bicicleta):
     bicicleta = ModeloBicicleta.objects.get(marca = marca_bicicleta, tipo = tipo_bicicleta, rodado = rodado_bicicleta)
     bicicleta.delete()
     return redirect('listar modelos de bicicletas')
 
-#@staff_member_required ()    #No permito hacer modificaciones de inventario a personas que no tienen dicho privilegio
+@staff_member_required ()    #No permito hacer modificaciones de inventario a personas que no tienen dicho privilegio
 def eliminar_accesorio(request, marca_accesorio, tipo_accesorio):
     accesorio = Accesorio.objects.get( marca = marca_accesorio, tipo = tipo_accesorio)
     accesorio.delete()
     return redirect('listar accesorios')
 
-#@staff_member_required
+@staff_member_required
 def editar_bicicleta(request, marca_bicicleta, tipo_bicicleta, rodado_bicicleta):
     bicicleta = ModeloBicicleta.objects.get(marca = marca_bicicleta, tipo = tipo_bicicleta, rodado = rodado_bicicleta)
     formulario = ModeloBicicletaFormulario(request.POST)
@@ -79,6 +82,7 @@ def editar_bicicleta(request, marca_bicicleta, tipo_bicicleta, rodado_bicicleta)
         bicicleta.tipo = datos['tipo']
         bicicleta.rodado = datos['rodado']
         bicicleta.stock = datos['stock']
+        bicicleta.modificado = datetime.now()
         bicicleta.save()
 
         return render(request, 'index.html',  {"mensaje":"Bicicleta " + bicicleta.marca + " modificada correctamente"})    
@@ -87,7 +91,7 @@ def editar_bicicleta(request, marca_bicicleta, tipo_bicicleta, rodado_bicicleta)
         formulario = ModeloBicicletaFormulario(initial=datos_iniciales)
     return render(request, 'stock/editar_bicicleta.html', {'formulario':formulario})
 
-#@staff_member_required
+@staff_member_required
 def editar_accesorio(request, marca_accesorio, tipo_accesorio):
     accesorio = Accesorio.objects.get( marca = marca_accesorio, tipo = tipo_accesorio)
     formulario = AccesorioFormulario(request.POST)
@@ -100,6 +104,7 @@ def editar_accesorio(request, marca_accesorio, tipo_accesorio):
         accesorio.marca = datos["marca"]
         accesorio.descripcion = datos["descripcion"]
         accesorio.stock = datos ['stock']
+        accesorio.modificado = datetime.now()
         accesorio.save()
         return render(request, 'index.html', {"mensaje":"Accesorio " + accesorio.tipo + " modificado correctamente"})
     else:
