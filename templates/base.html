@@ -32,8 +32,10 @@
                             <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/usuarios/login">Iniciar sesi&oacute;n</a></li>
                             <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/usuarios/registro">Registrarse</a></li>
                         {% else %}
-                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/stock/crear_modelo_de_bicicleta/">Ingresar Modelo bicicleta</a></li>
-                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/stock/crear_accesorio/">Ingresar Accesorio</a></li>
+                            {% if request.user.is_staff %}
+                                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/stock/crear_modelo_de_bicicleta/">Ingresar Modelo bicicleta</a></li>
+                                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/stock/crear_accesorio/">Ingresar Accesorio</a></li>
+                            {% endif %}
                             <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/stock/listar_modelos_de_bicicletas/">Listar Modelos bicicletas</a></li>
                             <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/stock/listar_accesorios/">Listar Accesorios</a></li>
                             <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/stock/buscar_modelo_de_bicicleta/">Buscar Modelo bicicleta</a></li>

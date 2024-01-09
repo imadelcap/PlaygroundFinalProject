@@ -50,10 +50,12 @@ def formulario_accesorio(request):
         formulario = AccesorioFormulario()
         return render(request, 'stock/formulario_accesorio.html', {'formulario': formulario })
 
+@login_required
 def listar_accesorios(request):
     lista_acc = Accesorio.objects.all()
     return render(request, 'stock/lista_accesorios.html', {'accesorios': lista_acc})
 
+@login_required
 def listar_bicicletas(request):
     lista_bicis = ModeloBicicleta.objects.all()
     return render(request, 'stock/lista_bicicletas.html', {'bicicletas': lista_bicis})
@@ -112,6 +114,7 @@ def editar_accesorio(request, marca_accesorio, tipo_accesorio):
         formulario = AccesorioFormulario(initial=datos_iniciales)
         return render(request, 'stock/editar_accesorio.html', {'formulario': formulario })
 
+@login_required
 def buscar_accesorio(request):
     if request.GET.get('caracteristica',False):
         b_criterio = request.GET['criterio']
@@ -129,6 +132,7 @@ def buscar_accesorio(request):
     else:
         return render(request, 'stock/buscar_accesorio.html')
 
+@login_required
 def buscar_modelo_bicicleta(request):
     if request.GET.get('caracteristica',False):
         b_criterio = request.GET['criterio']

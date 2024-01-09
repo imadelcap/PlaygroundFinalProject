@@ -23,10 +23,8 @@ def login_usuario(request):
             usuario = formulario.cleaned_data.get('username')
             contrasenia = formulario.cleaned_data.get('password')
             user = authenticate(username=usuario, password=contrasenia)
-            
             login(request, user)
-            if user.is_staff:
-                return render(request, "index.html", {"mensaje": f'Bienvenid@ {user.username}'})
+            return render(request, "index.html", {"mensaje": f'Bienvenid@ {user.username}'})
         else:
             return render(request, 'usuarios/login.html', {"formulario": formulario})
     
@@ -51,6 +49,7 @@ def registro_usuario(request):
 
 class Logout(LogoutView):
     template_name = "usuarios/logout.html"
+
 
 class PerfilUsuarioCreateView(LoginRequiredMixin, CreateView):
     model = PerfilUsuario
