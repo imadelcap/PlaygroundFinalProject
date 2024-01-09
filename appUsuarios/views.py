@@ -9,6 +9,7 @@ from django.views.generic import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import redirect
 
 from appUsuarios.models import PerfilUsuario
@@ -25,8 +26,7 @@ def login_usuario(request):
             
             login(request, user)
             if user.is_staff:
-                print('@@@@@@@@@@@@ Staff')
-            return render(request, "index.html", {"mensaje": f'Bienvenid@ {user.username}'})
+                return render(request, "index.html", {"mensaje": f'Bienvenid@ {user.username}'})
         else:
             return render(request, 'usuarios/login.html', {"formulario": formulario})
     
@@ -73,3 +73,26 @@ def perfil_usuario(request):
         return render(request, 'usuarios/perfil.html')
     except:
         return redirect('crear perfil')
+    
+@staff_member_required  
+def listar_usuarios(request):
+    lista_usuarios = PerfilUsuario.objects.all()
+    if request.POST:
+        #print('###POST###')
+        checked_items = request.POST.getlist("usuarios_checkbox")
+        for a in lista_usuarios:
+            a.usuario.is_staff = False
+            a.usuario.save()
+        for u in checked_items:
+            #print('@' + u +'@')
+            usuario_staff = PerfilUsuario.objects.get(usuario = u)
+            #print(usuario_staff)
+            #print(usuario_staff.usuario.is_staff)
+            usuario_staff.usuario.is_staff = True
+            usuario_staff.usuario.save()
+        #lista_usuarios = PerfilUsuario.objects.all()    
+        return render(request, 'index.html', {"mensaje":"Permisos correctamente"})
+        #return render(request, 'usuarios/lista_usuarios.html', {'usuarios': lista_usuarios}) #Por alguna razon no me actualizaba bien, si iba a otra pagina, x ejemplo Ver perfil, y luego retornaba, si lograba ver correctamente la seleccion 
+
+    else:
+        return render(request, 'usuarios/lista_usuarios.html', {'usuarios': lista_usuarios})

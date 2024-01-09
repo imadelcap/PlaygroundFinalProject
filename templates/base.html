@@ -77,6 +77,9 @@
                                     <li class="list-inline-item"><a href="/usuarios/crear_perfil">Crear perfil de usuario</a></li>
                                 {% else %}
                                     <li class="list-inline-item"><a href="/usuarios/perfil">Ver perfil de usuario</a></li>
+                                    {% if request.user.is_staff %}
+                                        <li class="list-inline-item"><a href="/usuarios/lista_usuarios">Lista usuarios</a></li>
+                                    {% endif %} 
                                 {% endif %}                           
                                 <li class="list-inline-item"><a href="/usuarios/logout">Cerrar sesi&oacute;n</a></li>
                             {% endif %}

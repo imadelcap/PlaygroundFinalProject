@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+
+<h3> Listado de usuarios </h3>
+<form action="/usuarios/lista_usuarios/" method="post">
+{% csrf_token %}
+{% for usuario in usuarios %}
+    <li>{{usuario.usuario.username}} - staff <input type ='checkbox' name="usuarios_checkbox" value="{{ usuario.usuario.id }}" {%if usuario.usuario.is_staff%} Checked {%endif%}> </li>
+{% endfor %}
+
+<input type="submit" value="Actualizar">
+</form>
+
+{% endblock %}

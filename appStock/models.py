@@ -20,7 +20,6 @@ class ModeloBicicleta(models.Model):
             'Modificado: ' + self.modificado
         )
             
-
 class Accesorio(models.Model):
     tipo = models.CharField(max_length=20) 
     marca = models.CharField(max_length=20)

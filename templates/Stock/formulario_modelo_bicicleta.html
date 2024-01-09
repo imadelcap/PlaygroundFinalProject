@@ -3,16 +3,14 @@
 
 {% block contenido %}
 
-
-<br>
-<h3> Formulario  -  Crear Modelo de bicicleta </h3s>
-<br>
+<h3> Formulario  -  Crear Modelo de bicicleta </h3>
 <form action="/stock/crear_modelo_de_bicicleta/" method="post">
     {% csrf_token %}
-    <p>Marca: <input type = "text" name="marca">
-    <p>Tipo: <input type = "text" name="tipo">
-    <p>Rodado: <input type = "number" name="rodado">
-    <p>Stock: <input type = "number" name="stock">
+    <table>
+        <p>Marca: <input type = "text" name="marca">
+        <p>Tipo: <input type = "text" name="tipo">
+        <p>Rodado: <input type = "number" name="rodado">
+        <p>Stock: <input type = "number" name="stock">
     </table>
     <br>
     <input type="submit" value="Crear">

@@ -19,6 +19,8 @@ También discrimino y restrinjo la capacidad de acción del usuario dependiendo 
 	- Modificar o eliminar de los listados.
 	## Ver otros usuarios
 	## Modificar o eliminar otros usuarios.
+#Probar ingresar directamente a las páginas que no permito por staff, en views.py> @staff_member_required//if al comienzo de la funcion.
+
 
 ###REVISAR###
 Tenía dos objetivos para los usuarios:

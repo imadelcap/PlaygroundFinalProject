@@ -8,12 +8,12 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 from datetime import datetime
 
-#@login_required(login_url="login")
+#@staff_member_required
 def formulario_modelo_bicicleta(request):
     #No permito hacer altas de inventario a personas que no tienen dicho privilegio
-    #if not request.user.is_staff:
-    #    return render(request, 'index.html',  {"mensaje":"No tiene permisos para ejecutar esta acción."})    
-    #else:
+    if not request.user.is_staff:
+        return render(request, 'index.html',  {"mensaje":"No tiene permisos para ejecutar esta acción."})    
+    else:
         if request.method == 'POST':
             modelo_bicicleta = ModeloBicicleta(
                 marca = request.POST['marca'], 

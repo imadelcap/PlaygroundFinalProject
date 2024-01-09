@@ -1,13 +1,9 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 from django.template import loader
 
 
 def inicio(request):
-    plantilla = loader.get_template("index.html")
-    documento = plantilla.render()
-    return HttpResponse(documento)
+    return render(request, 'index.html',)
 
 def about(request):
-    plantilla = loader.get_template("about.html")
-    documento = plantilla.render()
-    return HttpResponse(documento)
+    return render(request, 'about.html')
